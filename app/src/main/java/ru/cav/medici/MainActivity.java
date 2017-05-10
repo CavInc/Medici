@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_settings:
+                Intent intent = new Intent(MainActivity.this,PreferenseActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
