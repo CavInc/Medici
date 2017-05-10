@@ -1,6 +1,7 @@
 package ru.cav.medici.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 
@@ -20,5 +21,11 @@ public class DataBaseConnector {
             database.close();
         }
     }
+
+    public Cursor getAllChainHead(){
+        Cursor cursor = database.query("head_chain",new String[]{"_id","title","description"},null,null,null,null,null);
+        return cursor;
+    }
+
 
 }
