@@ -1,5 +1,6 @@
 package ru.cav.medici;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.setNotifyOnChange(true);
         mListView.setAdapter(mAdapter);
 
+        setTaskBar();
     }
 
     @Override
@@ -69,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
     public void OnButtonItemClick(View v){
 
         Toast.makeText(this, "Зачем вы нажали?", Toast.LENGTH_SHORT).show();
+    }
+
+    private void setTaskBar(){
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null){
+
+        }
+
     }
 
 }

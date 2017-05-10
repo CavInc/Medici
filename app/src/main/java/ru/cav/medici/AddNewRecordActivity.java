@@ -26,10 +26,19 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
                 .build();
 
+        setTaskBar();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    private void setTaskBar(){
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
     }
 }
