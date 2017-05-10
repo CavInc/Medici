@@ -2,8 +2,10 @@ package ru.cav.medici;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.SurfaceView;
 
 public class AddNewRecordActivity extends AppCompatActivity {
+    private SurfaceView mCameraView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
