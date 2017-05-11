@@ -4,9 +4,11 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import ru.cav.medici.models.HeadChainModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MAIN AC";
     private Button mAddButton;
     private ListView mListView;
 
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new DataAdapter(this,R.layout.main_items,record);
         mAdapter.setNotifyOnChange(true);
         mListView.setAdapter(mAdapter);
+
 
         setTaskBar();
     }
@@ -82,5 +86,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
 }
