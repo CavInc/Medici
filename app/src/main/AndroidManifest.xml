@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".WorkActivity">
         </activity>
+        <activity android:name=".PreferenseActivity"></activity>
     </application>
 
 </manifest>

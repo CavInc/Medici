@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_settings:
                 Intent intent = new Intent(MainActivity.this,PreferenseActivity.class);
                 startActivity(intent);
-                break;
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
