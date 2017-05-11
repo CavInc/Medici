@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import ru.cav.medici.models.HeadChainModel;
+
 
 public class DataBaseConnector {
     private SQLiteDatabase database;
@@ -28,7 +30,14 @@ public class DataBaseConnector {
     }
 
     // возвращает 1 запись
-    public void getOneChain(int id){
+    public HeadChainModel getOneChain(int id){
+        Cursor cursor = database.query("head_chain",
+                null,"_id=?",new String[]{String.valueOf(id)},null,null,null);
+        cursor.moveToFirst();
+        if (cursor.getCount()!=0) {
+            return new HeadChainModel(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+        }
+        return null;
 
     }
 

@@ -2,14 +2,17 @@ package ru.cav.medici;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 
 import ru.cav.medici.database.DataBaseConnector;
+import ru.cav.medici.models.HeadChainModel;
 
 public class WorkActivity extends AppCompatActivity {
 
+    private static final String TAG = "WORK AC";
     private  int rec_id;
     private DataBaseConnector mDb;
 
@@ -30,6 +33,11 @@ public class WorkActivity extends AppCompatActivity {
 
         mDb = new DataBaseConnector(this);
 
+        mDb.open();
+        HeadChainModel model = mDb.getOneChain(rec_id);
+        mDb.close();
+        Log.d(TAG, String.valueOf(model.getId()));
+
         setTaskBar();
     }
 
@@ -40,4 +48,5 @@ public class WorkActivity extends AppCompatActivity {
         }
 
     }
+
 }
