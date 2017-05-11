@@ -23,7 +23,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 "description text);";
 
         db.execSQL(sql);
-
+        sql="create table spec_chain (" +
+                "_id integer not null," +
+                "chain_txt text)";
+        db.execSQL(sql);
     }
 
     @Override
