@@ -27,5 +27,10 @@ public class DataBaseConnector {
         return cursor;
     }
 
+    // возвращает 1 запись
+    public void getOneChain(int id){
+
+    }
+
 
 }
