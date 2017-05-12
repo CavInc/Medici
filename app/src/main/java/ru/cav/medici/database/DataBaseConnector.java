@@ -47,6 +47,7 @@ public class DataBaseConnector {
         ContentValues newValues = new ContentValues();
         newValues.put("title",model.getTitle());
         newValues.put("description",model.getDescription());
+        if (database!=null) this.open();
         database.insert(DBHelper.HEAD_CHAIN, null, newValues);
         Cursor cursor=database.rawQuery("select _id from "+DBHelper.HEAD_CHAIN+" where rowid=last_insert_rowid()",null);
         cursor.moveToFirst();
@@ -55,6 +56,7 @@ public class DataBaseConnector {
         if (model.getSpec_shain()!=null){
 
         }
+        this.close();
     }
 
     // удалить запись
