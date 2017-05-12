@@ -48,10 +48,19 @@ public class DataBaseConnector {
         newValues.put("title",model.getTitle());
         newValues.put("description",model.getDescription());
         database.insert(DBHelper.HEAD_CHAIN, null, newValues);
+        Cursor cursor=database.rawQuery("select _id from "+DBHelper.HEAD_CHAIN+" where rowid=last_insert_rowid()",null);
+        cursor.moveToFirst();
+        int new_id = cursor.getInt(0);
+
         if (model.getSpec_shain()!=null){
-            
+
         }
     }
 
+    // удалить запись
+    public void deleteChain(int id){
+        database.delete(DBHelper.HEAD_CHAIN,"_id="+id,null);
+
+    }
 
 }

@@ -9,8 +9,8 @@
 
     <PreferenceCategory
         android:title="Настройки уведомления">
-        <RingtonePreference>
-
+        <RingtonePreference
+            android:title="Настройка рингтона">
         </RingtonePreference>
     </PreferenceCategory>
 

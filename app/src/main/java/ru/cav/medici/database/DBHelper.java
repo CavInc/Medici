@@ -29,8 +29,9 @@ public class DBHelper extends SQLiteOpenHelper {
         sql="create table spec_chain (" +
                 "_id integer not null," +
                 "position_id not null," +
-                "chain_txt text" +
-                "chain_time integer default 0)";
+                "chain_txt text," +
+                "chain_time integer default 0,primary key(_id,position_id)," +
+                "FOREIGN KEY (_id) REFERENCES head_chain (_id) ON DELETE CASCADE)";
         db.execSQL(sql);
     }
 
