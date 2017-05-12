@@ -1,8 +1,11 @@
 package ru.cav.medici;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,7 +39,9 @@ public class WorkActivity extends AppCompatActivity {
         mDb.open();
         HeadChainModel model = mDb.getOneChain(rec_id);
         mDb.close();
-        Log.d(TAG, String.valueOf(model.getId()));
+        if (null != model) {
+            Log.d(TAG, String.valueOf(model.getId()));
+        }
 
         setTaskBar();
     }
@@ -49,4 +54,22 @@ public class WorkActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_work_activity,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit_chain:
+                Intent intent = new Intent(WorkActivity.this,ChangeActivity.class);
+                intent.putExtra("CHANGE_FLG",true);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

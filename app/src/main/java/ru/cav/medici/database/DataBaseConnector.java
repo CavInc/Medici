@@ -1,5 +1,6 @@
 package ru.cav.medici.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,13 +26,13 @@ public class DataBaseConnector {
     }
 
     public Cursor getAllChainHead(){
-        Cursor cursor = database.query("head_chain",new String[]{"_id","title","description"},null,null,null,null,null);
+        Cursor cursor = database.query(DBHelper.HEAD_CHAIN,new String[]{"_id","title","description"},null,null,null,null,null);
         return cursor;
     }
 
     // возвращает 1 запись
     public HeadChainModel getOneChain(int id){
-        Cursor cursor = database.query("head_chain",
+        Cursor cursor = database.query(DBHelper.HEAD_CHAIN,
                 null,"_id=?",new String[]{String.valueOf(id)},null,null,null);
         cursor.moveToFirst();
         if (cursor.getCount()!=0) {
@@ -39,6 +40,17 @@ public class DataBaseConnector {
         }
         return null;
 
+    }
+
+    // добавили запись (с доп данными)
+    public void insertChain(HeadChainModel model){
+        ContentValues newValues = new ContentValues();
+        newValues.put("title",model.getTitle());
+        newValues.put("description",model.getDescription());
+        database.insert(DBHelper.HEAD_CHAIN, null, newValues);
+        if (model.getSpec_shain()!=null){
+            
+        }
     }
 
 

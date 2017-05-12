@@ -74,10 +74,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void OnButtonItemClick(View v){
-
-        Toast.makeText(this, "Зачем вы нажали?", Toast.LENGTH_SHORT).show();
-    }
 
     private void setTaskBar(){
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -85,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG,"MAIN RESUME");
     }
 
 
