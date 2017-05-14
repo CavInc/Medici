@@ -2,6 +2,7 @@ package ru.cav.medici;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import ru.cav.medici.adapters.DataAdapter;
+import ru.cav.medici.database.DataBaseConnector;
 import ru.cav.medici.models.HeadChainModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<HeadChainModel> record = new ArrayList<>();
+        //ArrayList<HeadChainModel> record = new ArrayList<>();
         // debug
-        record.add(new HeadChainModel(1,"Пример 1","Всяка лажа"));
-        record.add(new HeadChainModel(2,"Пример 2","Всяка лажа 2"));
-        record.add(new HeadChainModel(3,"Пример 4","Всяка лажа 3"));
+        //record.add(new HeadChainModel(1,"Пример 1","Всяка лажа"));
+        //record.add(new HeadChainModel(2,"Пример 2","Всяка лажа 2"));
+        //record.add(new HeadChainModel(3,"Пример 4","Всяка лажа 3"));
+        ArrayList<HeadChainModel> record = getListData();
 
         mAdapter = new DataAdapter(this,R.layout.main_items,record);
         mAdapter.setNotifyOnChange(true);
@@ -89,5 +92,17 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,"MAIN RESUME");
     }
 
+    private ArrayList<HeadChainModel> getListData(){
+        ArrayList<HeadChainModel> record = new ArrayList<>();
+        DataBaseConnector db = new DataBaseConnector(this);
+        db.open();
+        Cursor cursor=db.getAllChainHead();
+       // cursor.moveToFirst();
+        while (cursor.moveToNext()){
+            record.add(new HeadChainModel(cursor.getInt(0),cursor.getString(1),cursor.getString(2)));
+        }
+        db.close();
+        return record;
+    }
 
 }

@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (_id) REFERENCES head_chain (_id) ON DELETE CASCADE)";
         db.execSQL(sql);
 
-        generateData();
+        generateData(db);
 
     }
 
@@ -43,8 +43,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    private void generateData(){
-        String sql="";
-
+    private void generateData(SQLiteDatabase db){
+        String sql="insert into head_chain (title) values('Выигрыш в лотерею');";
+        db.execSQL(sql);
+        sql = "insert into head_chain(title) values('Осознаное сновидение');";
+        db.execSQL(sql);
+        sql = "insert into head_chain(title) values('Остановка ВД');";
+        db.execSQL(sql);
     }
 }
