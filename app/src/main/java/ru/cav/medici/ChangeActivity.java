@@ -70,6 +70,7 @@ public class ChangeActivity extends AppCompatActivity implements View.OnClickLis
                 // сохраниили и отдали данные
                 Intent answerIntent = new Intent();
                 answerIntent.putExtra(ConstantManager.REC_TITLE,mTitle.getText());
+                answerIntent.putExtra(ConstantManager.REC_DESC,mDesc.getText());
                 setResult(RESULT_OK, answerIntent);
                 finish();
                 break;

@@ -59,6 +59,14 @@ public class DataBaseConnector {
         this.close();
     }
 
+    // обновили запись
+    public void updateChain(HeadChainModel model){
+        ContentValues updValue = new ContentValues();
+        updValue.put("title",model.getTitle());
+        updValue.put("description",model.getDescription());
+        database.update(DBHelper.HEAD_CHAIN,updValue,"_id="+model.getId(),null);
+    }
+
     // удалить запись
     public void deleteChain(int id){
         database.delete(DBHelper.HEAD_CHAIN,"_id="+id,null);
