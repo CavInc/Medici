@@ -33,10 +33,18 @@ public class DBHelper extends SQLiteOpenHelper {
                 "chain_time integer default 0,primary key(_id,position_id)," +
                 "FOREIGN KEY (_id) REFERENCES head_chain (_id) ON DELETE CASCADE)";
         db.execSQL(sql);
+
+        generateData();
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    private void generateData(){
+        String sql="";
 
     }
 }

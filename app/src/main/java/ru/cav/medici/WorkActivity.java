@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import ru.cav.medici.database.DataBaseConnector;
 import ru.cav.medici.models.HeadChainModel;
 
-public class WorkActivity extends AppCompatActivity {
+public class WorkActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "WORK AC";
     private  int rec_id;
@@ -23,8 +24,10 @@ public class WorkActivity extends AppCompatActivity {
     private TextView mDescriptionWorkItem;
     private Button mActionButton;
 
+    private int id;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work);
 
@@ -41,6 +44,9 @@ public class WorkActivity extends AppCompatActivity {
         mDb.close();
         if (null != model) {
             Log.d(TAG, String.valueOf(model.getId()));
+            id=model.getId();
+            mDescription.setText(model.getTitle());
+            mDescriptionWorkItem.setText(model.getDescription());
         }
 
         setTaskBar();
@@ -66,10 +72,27 @@ public class WorkActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.edit_chain:
                 Intent intent = new Intent(WorkActivity.this,ChangeActivity.class);
-                intent.putExtra("CHANGE_FLG",true);
-                startActivity(intent);
+                intent.putExtra(ConstantManager.CHANGE_FLG,true);
+                intent.putExtra(ConstantManager.REC_TITLE,mDescription.getText());
+                intent.putExtra(ConstantManager.REC_DESC,mDescriptionWorkItem.getText());
+
+                startActivityForResult(intent,ConstantManager.CHANGE_CHAIN);
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case ConstantManager.CHANGE_CHAIN:
+                break;
+        }
+        //super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }
