@@ -4,9 +4,11 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import ru.cav.medici.models.HeadChainModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MAIN AC";
     private Button mAddButton;
     private ListView mListView;
 
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.setNotifyOnChange(true);
         mListView.setAdapter(mAdapter);
 
+
         setTaskBar();
     }
 
@@ -65,15 +69,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_settings:
                 Intent intent = new Intent(MainActivity.this,PreferenseActivity.class);
                 startActivity(intent);
-                break;
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void OnButtonItemClick(View v){
-
-        Toast.makeText(this, "Зачем вы нажали?", Toast.LENGTH_SHORT).show();
-    }
 
     private void setTaskBar(){
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -82,5 +82,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG,"MAIN RESUME");
+    }
+
 
 }

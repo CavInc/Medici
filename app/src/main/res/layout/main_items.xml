@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:text="TEST"
         android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
-        android:onClick="OnButtonItemClick"/>
+        android:background="@drawable/items_button_bg"/>
+
 
 </LinearLayout>

@@ -8,6 +8,9 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import ru.cav.medici.database.DataBaseConnector;
+import ru.cav.medici.models.HeadChainModel;
+
 public class AddNewRecordActivity extends AppCompatActivity {
 
     private BarcodeDetector mBarcodeDetector;
@@ -25,6 +28,8 @@ public class AddNewRecordActivity extends AppCompatActivity {
         mBarcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
                 .build();
+
+        new DataBaseConnector(this).insertChain(new HeadChainModel(1,"А ето тест","А тут у нас описания"));
 
         setTaskBar();
     }
