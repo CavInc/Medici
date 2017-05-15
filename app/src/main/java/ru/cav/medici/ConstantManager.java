@@ -7,4 +7,5 @@ public interface ConstantManager {
     String CHANGE_FLG = "CHANGE_FLG";
 
     int CHANGE_CHAIN = 100;
+    String CHAIN_ID = "CHAIN_ID";
 }

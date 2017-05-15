@@ -25,7 +25,7 @@
             android:id="@+id/timer_out"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:layout_marginLeft="4dp"
             android:text="00:00"
             android:textSize="16sp"/>
@@ -39,14 +39,23 @@
         android:layout_below="@+id/time_layout"
         android:layout_alignParentLeft="true"
         android:textSize="18sp"
-        android:layout_alignParentStart="true"/>
-    <ImageSwitcher
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"/>
+    <HorizontalScrollView
         android:id="@+id/roller_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/description_item"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></ImageSwitcher>
+        android:layout_alignParentStart="true">
+        <ListView
+            android:id="@+id/work_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
+
+    </HorizontalScrollView>
 
     <ImageView
         android:id="@+id/img_pictogram"

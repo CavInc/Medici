@@ -30,7 +30,8 @@
         </activity>
         <activity android:name=".Info">
         </activity>
-        <activity android:name=".AddNewRecordActivity">
+        <activity android:name=".AddNewRecordActivity"
+            android:label="Scan QR">
         </activity>
         <activity android:name=".WorkActivity">
         </activity>

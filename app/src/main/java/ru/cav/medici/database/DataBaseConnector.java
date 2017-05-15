@@ -30,6 +30,12 @@ public class DataBaseConnector {
         return cursor;
     }
 
+    // возвращает данные цепочки
+    public Cursor getAllChain(int rec_id){
+        Cursor cursor = database.query(DBHelper.SPEC_CHAIN,new String[]{"position_id","chain_txt","chain_desc","chain_time"},"_id="+rec_id,null,null,null,"position_id");
+        return cursor;
+    }
+
     // возвращает 1 запись
     public HeadChainModel getOneChain(int id){
         Cursor cursor = database.query(DBHelper.HEAD_CHAIN,
