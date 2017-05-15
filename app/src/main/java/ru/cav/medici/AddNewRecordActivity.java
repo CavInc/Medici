@@ -1,7 +1,9 @@
 package ru.cav.medici;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,7 +37,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
         mCameraView = (SurfaceView) findViewById(R.id.surface_view);
 
         mBarcodeDetector = new BarcodeDetector.Builder(this)
-                .setBarcodeFormats(Barcode.ALL_FORMATS)
+                .setBarcodeFormats(Barcode.QR_CODE)
                 .build();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -84,7 +86,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
             public void receiveDetections(Detector.Detections detections) {
                 final SparseArray barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
-
+                    playMessage();
                 }
             }
         });
@@ -110,6 +112,24 @@ public class AddNewRecordActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
         return super.onContextItemSelected(item);
+    }
+
+    private void playMessage() {
+        /*
+        Ringtone ringtone;
+        RingtoneManager rm = new RingtoneManager(this);
+        rm.setType(RingtoneManager.TYPE_NOTIFICATION);
+        ringtone = rm.getRingtone(0);
+        ringtone.play();*/
+
+        long mills = 300L;
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(mills);
     }
 }

@@ -142,6 +142,12 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.work_chain_edit:
+                Intent intent = new Intent(WorkActivity.this,ChangeActivity.class);
+                startActivity(intent);
+                break;
+        }
 
 
     }
