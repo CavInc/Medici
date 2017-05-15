@@ -7,8 +7,12 @@
         android:id="@+id/chain_item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="28sp"
+        android:textSize="46sp"
         android:textStyle="bold"
-        android:text="Y6"/>
+        android:text="Y6"
+        android:padding="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/laouyt_border"/>
 
 </LinearLayout>

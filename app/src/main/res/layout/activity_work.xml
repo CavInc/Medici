@@ -65,7 +65,7 @@
         android:layout_below="@+id/img_pictogram"
         android:background="@drawable/laouyt_border">
         <ImageButton
-            android:id="@+id/work_edit"
+            android:id="@+id/work_chain_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

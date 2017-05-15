@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -30,6 +31,8 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mDescriptionWorkItem;
     private Button mActionButton;
 
+    private ImageButton mEditDescChainItem;
+
     private HorizontalListView mListView;
 
 
@@ -45,6 +48,9 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         mDescriptionWorkItem = (TextView) findViewById(R.id.description_work_item);
         mActionButton = (Button) findViewById(R.id.active_button);
         mActionButton.setOnClickListener(this);
+
+        mEditDescChainItem = (ImageButton) findViewById(R.id.work_chain_edit);
+        mEditDescChainItem.setOnClickListener(this);
 
         mListView = (HorizontalListView) findViewById(R.id.work_list);
 
