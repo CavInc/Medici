@@ -2,6 +2,7 @@ package ru.cav.medici;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
@@ -18,15 +19,19 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import ru.cav.medici.database.DataBaseConnector;
 import ru.cav.medici.models.HeadChainModel;
+import ru.cav.medici.models.SpecChainModel;
 
 public class AddNewRecordActivity extends AppCompatActivity {
 
     private BarcodeDetector mBarcodeDetector;
     private CameraSource mCameraSource;
     private SurfaceView mCameraView;
+
+    private String barStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +91,12 @@ public class AddNewRecordActivity extends AppCompatActivity {
             public void receiveDetections(Detector.Detections detections) {
                 final SparseArray barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
+                    barStr = ((Barcode) barcodes.valueAt(0)).displayValue;
                     playMessage();
+                    Intent intent = new Intent(AddNewRecordActivity.this,ChangeActivity.class);
+                    intent.putExtra(ConstantManager.CHANGE_FLG,ConstantManager.CHANGE_INSERT);
+                    startActivityForResult(intent,ConstantManager.ADD_NEW_RECORD);
+                   // mCameraSource.stop();
                 }
             }
         });
@@ -131,5 +141,30 @@ public class AddNewRecordActivity extends AppCompatActivity {
         long mills = 300L;
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(mills);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case ConstantManager.ADD_NEW_RECORD:
+                if (resultCode == RESULT_OK && data !=null) {
+                    String title = data.getStringExtra(ConstantManager.REC_TITLE);
+                    String desc = data.getStringExtra(ConstantManager.REC_DESC);
+                    System.out.println(barStr);
+                    ArrayList<SpecChainModel> chainModels = new ArrayList<>();
+                    String item[] = barStr.split(" ");
+                    for (int i=0;i<item.length;i++){
+                        chainModels.add(new SpecChainModel(i,item[i],0));
+                    }
+                    DataBaseConnector db = new DataBaseConnector(this);
+                    HeadChainModel model = new HeadChainModel(-1,title,desc,chainModels);
+                    db.open();
+                    db.insertChain(model);
+                    db.close();
+                    finish();
+                }
+                break;
+        }
+        //super.onActivityResult(requestCode, resultCode, data);
     }
 }

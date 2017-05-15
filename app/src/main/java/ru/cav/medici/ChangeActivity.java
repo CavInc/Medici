@@ -39,6 +39,7 @@ public class ChangeActivity extends AppCompatActivity implements View.OnClickLis
 
 
         mDelete = (Button) findViewById(R.id.del_button);
+        mDelete.setOnClickListener(this);
 
         mSave = (Button) findViewById(R.id.save_button);
         mSave.setOnClickListener(this);
@@ -80,10 +81,14 @@ public class ChangeActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.save_button:
                 // сохраниили и отдали данные
                 Intent answerIntent = new Intent();
-                answerIntent.putExtra(ConstantManager.REC_TITLE,mTitle.getText());
-                answerIntent.putExtra(ConstantManager.REC_DESC,mDesc.getText());
+                answerIntent.putExtra(ConstantManager.REC_TITLE,mTitle.getText().toString());
+                answerIntent.putExtra(ConstantManager.REC_DESC,mDesc.getText().toString());
+                answerIntent.putExtra(ConstantManager.REC_DELETE_FLG,false);
                 setResult(RESULT_OK, answerIntent);
                 finish();
+                break;
+            case R.id.del_button:
+
                 break;
         }
 

@@ -4,6 +4,7 @@ public interface ConstantManager {
 
     String REC_TITLE = "REC_TITLE";
     String REC_DESC = "REC_DESC";
+    String REC_DELETE_FLG = "REC_DELETE_FLG";
     String CHANGE_FLG = "CHANGE_FLG";
 
     int CHANGE_INSERT = 0;
@@ -14,5 +15,7 @@ public interface ConstantManager {
     int CHANGE_ITEM_DESC = 101;
 
     String CHAIN_ID = "CHAIN_ID";
+
+    int ADD_NEW_RECORD = 102;
 
 }

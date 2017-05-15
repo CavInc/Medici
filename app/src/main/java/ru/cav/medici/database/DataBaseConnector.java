@@ -59,7 +59,14 @@ public class DataBaseConnector {
         cursor.moveToFirst();
         int new_id = cursor.getInt(0);
 
+        ContentValues chainValues = new ContentValues();
         if (model.getSpec_shain()!=null){
+            for (int i=0;i<model.getSpec_shain().size();i++){
+                chainValues.put("_id",new_id);
+                chainValues.put("position_id",i);
+                chainValues.put("chain_txt",model.getSpec_shain().get(i).getChainItem());
+                database.insert(DBHelper.SPEC_CHAIN,null,chainValues);
+            }
 
         }
         this.close();
