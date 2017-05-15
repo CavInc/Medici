@@ -14,14 +14,14 @@
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Название"
+        android:hint="Название"
         />
     <EditText
         android:id="@+id/edit_desct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="10"
-        android:text="Описание"
+        android:hint="Описание"
         android:minLines="1"/>
     <LinearLayout
         android:layout_width="match_parent"

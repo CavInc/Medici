@@ -107,7 +107,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.edit_chain:
                 Intent intent = new Intent(WorkActivity.this,ChangeActivity.class);
-                intent.putExtra(ConstantManager.CHANGE_FLG,true);
+                intent.putExtra(ConstantManager.CHANGE_FLG,ConstantManager.CHANGE_EDIT);
                 intent.putExtra(ConstantManager.REC_TITLE,mDescription.getText());
                 //intent.putExtra(ConstantManager.REC_DESC,mDescriptionWorkItem.getText());
 
@@ -145,6 +145,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.work_chain_edit:
                 Intent intent = new Intent(WorkActivity.this,ChangeActivity.class);
+                intent.putExtra(ConstantManager.CHANGE_FLG,ConstantManager.CHANGE_DESC_CHAIN);
                 startActivity(intent);
                 break;
         }

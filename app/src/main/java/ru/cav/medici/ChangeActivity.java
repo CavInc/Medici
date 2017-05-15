@@ -16,7 +16,7 @@ public class ChangeActivity extends AppCompatActivity implements View.OnClickLis
     private Button mDelete;
     private Button mSave;
 
-    private boolean change_flag;
+    private int change_flag;
 
 
     @Override
@@ -27,9 +27,15 @@ public class ChangeActivity extends AppCompatActivity implements View.OnClickLis
         mTitle = (EditText) findViewById(R.id.edit_title);
         mDesc = (EditText) findViewById(R.id.edit_desct);
 
-        mTitle.setText(getIntent().getStringExtra(ConstantManager.REC_TITLE));
-        mDesc.setText(getIntent().getStringExtra(ConstantManager.REC_DESC));
-        change_flag = getIntent().getBooleanExtra(ConstantManager.CHANGE_FLG,false);
+        String title = getIntent().getStringExtra(ConstantManager.REC_TITLE);
+        if (title!=null) {
+            mTitle.setText(getIntent().getStringExtra(ConstantManager.REC_TITLE));
+        }
+        String desc = getIntent().getStringExtra(ConstantManager.REC_DESC);
+        if (desc!=null) {
+            mDesc.setText(getIntent().getStringExtra(ConstantManager.REC_DESC));
+        }
+        change_flag = getIntent().getIntExtra(ConstantManager.CHANGE_FLG,-1);
 
 
         mDelete = (Button) findViewById(R.id.del_button);
@@ -37,9 +43,14 @@ public class ChangeActivity extends AppCompatActivity implements View.OnClickLis
         mSave = (Button) findViewById(R.id.save_button);
         mSave.setOnClickListener(this);
 
-        if (change_flag){
-            mDelete.setVisibility(View.GONE);
-
+        switch (change_flag){
+            case ConstantManager.CHANGE_INSERT:
+                mDelete.setVisibility(View.GONE);
+                break;
+            case ConstantManager.CHANGE_DESC_CHAIN:
+                mTitle.setVisibility(View.GONE);
+                mDelete.setVisibility(View.GONE);
+                break;
         }
 
         setTaskBar();

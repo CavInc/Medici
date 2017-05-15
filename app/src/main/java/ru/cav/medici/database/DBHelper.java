@@ -24,7 +24,8 @@ public class DBHelper extends SQLiteOpenHelper {
         String sql="create table head_chain (" +
                 "_id integer not null primary key AUTOINCREMENT," +
                 "title text," +
-                "description text);";
+                "description text," +
+                "action_flg integer default 0);";
 
         db.execSQL(sql);
         sql="create table spec_chain (" +
@@ -32,6 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "position_id not null," +
                 "chain_txt text," +
                 "chain_desc text,"+
+                "action_flg integer default 0,"+
                 "chain_time integer default 0,primary key(_id,position_id)," +
                 "FOREIGN KEY (_id) REFERENCES head_chain (_id) ON DELETE CASCADE)";
         db.execSQL(sql);
@@ -48,19 +50,19 @@ public class DBHelper extends SQLiteOpenHelper {
     private void generateData(SQLiteDatabase db){
         String sql="insert into head_chain (title) values('Выигрыш в лотерею');";
         db.execSQL(sql);
-        String chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2 \n" +
+        String chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2 " +
                 "Y9> R2> Y5> Y3 B6 G5 B7> R9 G7> Y1 R1 G1> R3>";
 
         setSpecChain(db,1,chain);
         sql = "insert into head_chain(title) values('Осознаное сновидение');";
         db.execSQL(sql);
-        chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2 \n" +
+        chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2 " +
                 "Y9> R2> Y5> Y3 B6 G5 B7> R9 G7> Y1 R1 G1> R3>";
 
         setSpecChain(db,2,chain);
         sql = "insert into head_chain(title) values('Остановка ВД');";
         db.execSQL(sql);
-        chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2 \n" +
+        chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2 " +
                 "Y9> R2> Y5> Y3 B6 G5 B7> R9 G7> Y1 R1 G1> R3>";
 
         setSpecChain(db,3,chain);
