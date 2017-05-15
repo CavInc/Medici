@@ -1,6 +1,7 @@
 package ru.cav.medici.database;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -30,6 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "_id integer not null," +
                 "position_id not null," +
                 "chain_txt text," +
+                "chain_desc text,"+
                 "chain_time integer default 0,primary key(_id,position_id)," +
                 "FOREIGN KEY (_id) REFERENCES head_chain (_id) ON DELETE CASCADE)";
         db.execSQL(sql);
@@ -46,19 +48,33 @@ public class DBHelper extends SQLiteOpenHelper {
     private void generateData(SQLiteDatabase db){
         String sql="insert into head_chain (title) values('Выигрыш в лотерею');";
         db.execSQL(sql);
-        String chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2\n" +
+        String chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2 \n" +
                 "Y9> R2> Y5> Y3 B6 G5 B7> R9 G7> Y1 R1 G1> R3>";
 
         setSpecChain(db,1,chain);
         sql = "insert into head_chain(title) values('Осознаное сновидение');";
         db.execSQL(sql);
+        chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2 \n" +
+                "Y9> R2> Y5> Y3 B6 G5 B7> R9 G7> Y1 R1 G1> R3>";
 
+        setSpecChain(db,2,chain);
         sql = "insert into head_chain(title) values('Остановка ВД');";
         db.execSQL(sql);
+        chain = "Y6 B4 B5 R6 Y4 G9 G6 Y2 B9 R4 Y8 B8 B1 G4 R5 B3 G3 R8 R7 G2 G8 Y7 B2 \n" +
+                "Y9> R2> Y5> Y3 B6 G5 B7> R9 G7> Y1 R1 G1> R3>";
 
-
+        setSpecChain(db,3,chain);
     }
+
     private void setSpecChain(SQLiteDatabase db,int id,String chain){
+        ContentValues newValues = new ContentValues();
+        String item[]=chain.split(" ");
+        for (int i=0;i<item.length;i++){
+            newValues.put("_id",id);
+            newValues.put("position_id",i);
+            newValues.put("chain_txt",item[i]);
+            db.insert(SPEC_CHAIN,null,newValues);
+        }
 
     }
 }

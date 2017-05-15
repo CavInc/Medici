@@ -78,6 +78,9 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
 
                 startActivityForResult(intent,ConstantManager.CHANGE_CHAIN);
                 return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
