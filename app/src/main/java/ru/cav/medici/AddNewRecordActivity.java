@@ -27,6 +27,7 @@ import ru.cav.medici.models.SpecChainModel;
 
 public class AddNewRecordActivity extends AppCompatActivity {
 
+    private static final int PERMISSION_REQUEST_CODE = 1000;
     private BarcodeDetector mBarcodeDetector;
     private CameraSource mCameraSource;
     private SurfaceView mCameraView;
@@ -46,13 +47,9 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 .build();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.CAMERA)){
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},PERMISSION_REQUEST_CODE);
+            }
         }
 
         mCameraSource = new CameraSource.Builder(this, mBarcodeDetector)
@@ -103,6 +100,11 @@ public class AddNewRecordActivity extends AppCompatActivity {
 
 
         setTaskBar();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
