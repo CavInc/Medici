@@ -11,5 +11,8 @@ public interface ConstantManager {
     int CHANGE_DESC_CHAIN =2;
 
     int CHANGE_CHAIN = 100;
+    int CHANGE_ITEM_DESC = 101;
+
     String CHAIN_ID = "CHAIN_ID";
+
 }

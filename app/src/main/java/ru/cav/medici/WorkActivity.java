@@ -136,6 +136,11 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
                 break;
+            case ConstantManager.CHANGE_ITEM_DESC:
+                if (requestCode==RESULT_OK && data !=null){
+
+                }
+                break;
         }
         //super.onActivityResult(requestCode, resultCode, data);
     }
@@ -146,7 +151,8 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.work_chain_edit:
                 Intent intent = new Intent(WorkActivity.this,ChangeActivity.class);
                 intent.putExtra(ConstantManager.CHANGE_FLG,ConstantManager.CHANGE_DESC_CHAIN);
-                startActivity(intent);
+
+                startActivityForResult(intent,ConstantManager.CHANGE_ITEM_DESC);
                 break;
         }
 
