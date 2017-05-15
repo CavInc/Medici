@@ -41,27 +41,21 @@
         android:textSize="18sp"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="16dp"/>
-    <HorizontalScrollView
-        android:id="@+id/roller_item"
+
+
+    <ru.cav.medici.misc.HorizontalListView
+        android:id="@+id/work_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/description_item"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-        <ListView
-            android:id="@+id/work_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_height="120dp"
+        android:layout_below="@id/description_item">
 
-        </ListView>
-
-    </HorizontalScrollView>
+    </ru.cav.medici.misc.HorizontalListView>
 
     <ImageView
         android:id="@+id/img_pictogram"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_below="@id/description_item"
+        android:layout_below="@id/work_list"
         />
     <LinearLayout
         android:layout_width="match_parent"

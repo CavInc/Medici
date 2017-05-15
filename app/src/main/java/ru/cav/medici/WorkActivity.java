@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -17,6 +16,7 @@ import java.util.ArrayList;
 
 import ru.cav.medici.adapters.ChainAdapter;
 import ru.cav.medici.database.DataBaseConnector;
+import ru.cav.medici.misc.HorizontalListView;
 import ru.cav.medici.models.HeadChainModel;
 import ru.cav.medici.models.SpecChainModel;
 
@@ -30,7 +30,8 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mDescriptionWorkItem;
     private Button mActionButton;
 
-    private ListView mListView;
+    private HorizontalListView mListView;
+
 
     private int id;
     private ChainAdapter mAdapter;
@@ -45,7 +46,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         mActionButton = (Button) findViewById(R.id.active_button);
         mActionButton.setOnClickListener(this);
 
-        mListView = (ListView) findViewById(R.id.work_list);
+        mListView = (HorizontalListView) findViewById(R.id.work_list);
 
         rec_id = getIntent().getIntExtra(ConstantManager.CHAIN_ID,-1);
 
