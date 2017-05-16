@@ -124,15 +124,21 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
             case ConstantManager.CHANGE_CHAIN:
-                System.out.println(data!=null);
                 if (resultCode == RESULT_OK && data !=null){
-                    Log.d(TAG,data.getStringExtra(ConstantManager.REC_TITLE));
-                    HeadChainModel lrec = new HeadChainModel(id,
-                            data.getStringExtra(ConstantManager.REC_TITLE)
-                            ,data.getStringExtra(ConstantManager.REC_DESC));
-                    mDb.open();
-                    mDb.updateChain(lrec);
-                    mDb.close();
+                    if (!data.getBooleanExtra(ConstantManager.REC_DELETE_FLG,false)) {
+                        HeadChainModel lrec = new HeadChainModel(id,
+                                data.getStringExtra(ConstantManager.REC_TITLE)
+                                , data.getStringExtra(ConstantManager.REC_DESC));
+                        mDb.open();
+                        mDb.updateChain(lrec);
+                        mDb.close();
+                    }
+                    if (data.getBooleanExtra(ConstantManager.REC_DELETE_FLG,false)){
+                        mDb.open();
+                        mDb.deleteChain(id);
+                        mDb.close();
+                        finish();
+                    }
 
                 }
                 break;

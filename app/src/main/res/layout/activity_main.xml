@@ -24,6 +24,7 @@
         android:layout_marginRight="24dp"
         android:layout_marginLeft="24dp"
         android:text="Добавить"
+        style="@style/color_button"
         android:layout_below="@id/searchView"/>
 
     <ListView

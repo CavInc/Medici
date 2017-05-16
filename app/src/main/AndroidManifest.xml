@@ -34,10 +34,12 @@
         <activity android:name=".AddNewRecordActivity"
             android:label="Scan QR">
         </activity>
-        <activity android:name=".WorkActivity">
+        <activity android:name=".WorkActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".PreferenseActivity"/>
-        <activity android:name=".ChangeActivity">
+        <activity android:name=".ChangeActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

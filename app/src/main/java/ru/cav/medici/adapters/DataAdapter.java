@@ -51,9 +51,9 @@ public class DataAdapter extends ArrayAdapter<HeadChainModel> {
             @Override
             public void onClick(View view) {
 
-                Log.d(TAG, String.valueOf(record.getId()));
+               // Log.d(TAG, String.valueOf(record.getId()));
 
-                Toast.makeText(mContext, "Зачем вы нажали? "+record.getTitle(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext, "Зачем вы нажали? "+record.getTitle(), Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(mContext, WorkActivity.class);
                 intent.putExtra("CHAIN_ID",record.getId());
                 mContext.startActivity(intent);

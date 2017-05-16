@@ -83,7 +83,6 @@ public class DataBaseConnector {
     // удалить запись
     public void deleteChain(int id){
         database.delete(DBHelper.HEAD_CHAIN,"_id="+id,null);
-
     }
 
 }

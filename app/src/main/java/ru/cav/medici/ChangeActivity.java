@@ -88,7 +88,10 @@ public class ChangeActivity extends AppCompatActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.del_button:
-
+                answerIntent = new Intent();
+                answerIntent.putExtra(ConstantManager.REC_DELETE_FLG,true);
+                setResult(RESULT_OK, answerIntent);
+                finish();
                 break;
         }
 

@@ -59,6 +59,7 @@ public class AddNewRecordActivity extends AppCompatActivity {
         setTaskBar();
     }
 
+    @SuppressWarnings("unchecked")
     private void createCamera(){
         mBarcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE)
@@ -79,16 +80,14 @@ public class AddNewRecordActivity extends AppCompatActivity {
                 if (barcodes.size() != 0) {
                     barStr = ((Barcode) barcodes.valueAt(0)).displayValue;
                     playMessage();
+                    mBarcodeDetector.release();
                     Intent intent = new Intent(AddNewRecordActivity.this,ChangeActivity.class);
                     intent.putExtra(ConstantManager.CHANGE_FLG,ConstantManager.CHANGE_INSERT);
                     startActivityForResult(intent,ConstantManager.ADD_NEW_RECORD);
                     // mCameraSource.stop();
-
                 }
             }
         });
-
-
     }
 
     @Override
